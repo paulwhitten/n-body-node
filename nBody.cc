@@ -55,6 +55,7 @@ public:
 
     int bodyLength;
 
+    // Init the system per the specification with jovian planet specifics
     NBodySystem(): bodyLength(5) {
         bodies = new Body* [bodyLength];
         // sun
