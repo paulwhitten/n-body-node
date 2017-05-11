@@ -2,8 +2,14 @@
 #include <math.h>
 #include "nBody.h"
 
-// native node addon module inspired by the example/async_pi_estimate at
+// Native node addon module inspired by the example/async_pi_estimate at
 // https://github.com/nodejs/nan
+
+// This implementation follows the sample implementation for the
+// n-body problem.  Did not make any attempts to make it run fast.
+
+// TODO: should visit some of the fast C++ implementations using
+// those efficiencies there.
 
 using v8::Function;
 using v8::Local;
@@ -168,8 +174,8 @@ public:
 
 class NBodyWorker : public AsyncWorker {
  public:
-  NBodyWorker(Callback *callback, int Count)
-    : AsyncWorker(callback), count(Count) {
+  NBodyWorker(Callback *callback, int Count):
+    AsyncWorker(callback), count(Count) {
     }
   ~NBodyWorker() {}
 
@@ -185,8 +191,8 @@ class NBodyWorker : public AsyncWorker {
     HandleScope scope;
 
     Local<Value> argv[] = {
-        Null()
-      , New<Number>(energy())
+        Null(),
+        New<Number>(energy())
     };
 
     callback->Call(2, argv);
@@ -210,7 +216,7 @@ NAN_METHOD(nBody) {
 
     NBodyWorker* pN = new NBodyWorker(callback, count);
     
-    // send an initial result
+    // send an initial result to conform with the desired output
     Local<Value> argv[] = {
         Null(),
         New<Number>(pN->energy())
