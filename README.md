@@ -2,8 +2,9 @@
 
 A node.js native addon for the [Computer Language Benchmarks Game](http://benchmarksgame.alioth.debian.org/).
 
-The node submissions suck.  Node is not meant to run computationally intensive apps in JS.
+The node submissions for this problem are either are blocking or implement the solution in JavaScript.  Node is not meant to run computationally intensive apps in JS.
 
-Here is how it should be done. As an asynchronous native module.
+Here is how it could be done. As an asynchronous native module.
+
 
 

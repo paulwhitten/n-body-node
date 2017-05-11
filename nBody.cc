@@ -106,6 +106,9 @@ public:
     }
 
     ~NBodySystem() {
+        for (int i = 0; i < bodyLength; i++) {
+            delete bodies[i];
+        }
         delete [] bodies;
     }
 
